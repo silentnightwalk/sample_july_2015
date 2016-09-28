@@ -1,0 +1,51 @@
+﻿<Application x:Class="MetrologyAdmin.App" 
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" 
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
+             xmlns:properties="clr-namespace:MetrologyAdmin.Properties" 
+             xmlns:mvvm="http://cniitei.org/mvvm"
+             xmlns:controls="http://cniitei.org/controls"
+             Startup="App_Startup"              
+             >    
+  <Application.Resources>
+        <ResourceDictionary>
+            
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="pack://application:,,,/MetrologyAdmin.Theme;component/CniiteiDefaultTheme.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+            
+            <properties:Settings x:Key="Settings" />
+
+            <Style x:Key="OkCancelDialogStyle" TargetType="mvvm:DialogContainer">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="mvvm:DialogContainer">
+                            <Border Background="{TemplateBinding Background}" Padding="{TemplateBinding Padding}">
+                                <controls:BusyIndicator IsBusy="{Binding IsBusy}">
+                                    <DockPanel>
+                                        <Border Background="WhiteSmoke" MinHeight="50" DockPanel.Dock="Bottom"
+                                            BorderBrush="LightGray"
+                                            BorderThickness="0,1,0,0"
+                                            >
+                                            <StackPanel 
+                                                HorizontalAlignment="Right" 
+                                                VerticalAlignment="Center"
+                                                Orientation="Horizontal"
+                                                Height="24"
+                                                Margin="0,0,10,0"
+                                                >
+                                                <Button Content="OK" IsDefault="True" Command="{Binding OkCommand}" MinWidth="60" Margin="0,0,4,0" />
+                                                <Button Content="Отмена" Command="{Binding CancelCommand}" IsCancel="True" MinWidth="60" />
+                                            </StackPanel>
+                                        </Border>
+                                        <ContentPresenter />
+                                    </DockPanel>
+                                </controls:BusyIndicator>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+        </ResourceDictionary>
+      
+    </Application.Resources>
+</Application>

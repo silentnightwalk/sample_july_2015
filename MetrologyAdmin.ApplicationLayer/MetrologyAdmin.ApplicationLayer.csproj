@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{DD827744-E4D2-439F-BF41-3C0FD65FBDAB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MetrologyAdmin.ApplicationLayer</RootNamespace>
+    <AssemblyName>MetrologyAdmin.ApplicationLayer</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;DEBUGDB</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\Test\</OutputPath>
+    <DefineConstants>TRACE;DEBUG;FAKE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Autofac">
+      <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AppInitializer.cs" />
+    <Compile Include="EmailService.cs" />
+    <Compile Include="MainService.cs" />
+    <Compile Include="UserService.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\MetrologyAdmin.Core\MetrologyAdmin.Core.csproj">
+      <Project>{9104ff19-35c0-4409-b11c-1cd1e21c7d4d}</Project>
+      <Name>MetrologyAdmin.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetrologyAdmin.FakeData\MetrologyAdmin.FakeData.csproj">
+      <Project>{ea3cc3e5-20b4-4028-b17c-326f07c2de4d}</Project>
+      <Name>MetrologyAdmin.FakeData</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetrologyAdmin.ReadModel\MetrologyAdmin.ReadModel.csproj">
+      <Project>{ab649fe1-0902-44c5-8b36-b45ebdeea988}</Project>
+      <Name>MetrologyAdmin.ReadModel</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetrologyAdmin.Server.Core\MetrologyAdmin.Server.Core.csproj">
+      <Project>{d91aec88-35c3-4b58-9852-4711ce8a3763}</Project>
+      <Name>MetrologyAdmin.Server.Core</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetrologyAdmin.Server\MetrologyAdmin.Server.csproj">
+      <Project>{9a52cfb9-0235-4e02-a488-8bc94862a935}</Project>
+      <Name>MetrologyAdmin.Server</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MetrologyAdmin.WriteModel\MetrologyAdmin.Domain.csproj">
+      <Project>{8f7afee4-3f1f-49aa-a449-8a8b2b4a62e1}</Project>
+      <Name>MetrologyAdmin.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="LetterTemplate.txt">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
